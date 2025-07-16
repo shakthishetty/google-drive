@@ -110,7 +110,7 @@ export const signOutUser = async()=>{
 
     try{
      await account.deleteSession('current');
-     (await cookies()).delete("appwrite-session")
+     (await cookies()).delete("appwrite_session") // <-- fix cookie name here
     }catch(error){
       handleError(error,"Failed to sign out user")
     }finally{
