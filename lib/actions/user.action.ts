@@ -89,11 +89,9 @@ export const verifySecret = async({accountId,password}:{accountId:string;passwor
 }
 
 export const getCurrentUser = async () => {
-
   try{
-const {database, account } = await createSessionClient();
-  
-  
+ const {database, account } = await createSessionClient();
+
     const result = await account.get();
     const  user = await database.listDocuments(
         appwriteConfig.databaseId,
@@ -102,11 +100,9 @@ const {database, account } = await createSessionClient();
         );
         if(user.total <= 0) return null;
     return parseStringify(user.documents[0]);
-  
-  }catch(error){
-    handleError(error, "Failed to get current user");
+  }catch(err){
+    handleError(err, "Failed to get current user");
   }
-  
 };
 
 export const signOutUser = async()=>{
